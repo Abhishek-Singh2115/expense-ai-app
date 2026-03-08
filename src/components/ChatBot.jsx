@@ -6,37 +6,71 @@ export default function ChatBot({ expenses }) {
   const [answer, setAnswer] = useState("")
   const [loading, setLoading] = useState(false)
 
-  async function askAI() {
+  function generateFakeAI(message, expenses) {
+
+    if (!expenses || expenses.length === 0) {
+      return "Add some expenses first so I can analyze your spending."
+    }
+
+    const total = expenses.reduce((sum, e) => sum + Number(e.amount), 0)
+
+    const categoryTotals = {}
+
+    expenses.forEach(e => {
+      if (!categoryTotals[e.category]) {
+        categoryTotals[e.category] = 0
+      }
+      categoryTotals[e.category] += Number(e.amount)
+    })
+
+    const biggestCategory = Object.keys(categoryTotals).reduce((a, b) =>
+      categoryTotals[a] > categoryTotals[b] ? a : b
+    )
+
+    const msg = message.toLowerCase()
+
+    if (msg.includes("save")) {
+      return `Your biggest spending category is ${biggestCategory}. Try reducing spending there to save more money.`
+    }
+
+    if (msg.includes("total") || msg.includes("spend")) {
+      return `You have spent ₹${total} in total. Your highest spending category is ${biggestCategory}.`
+    }
+
+    if (msg.includes("rent")) {
+      return "Rent usually takes a large portion of income. Try keeping rent below 30% of your monthly income."
+    }
+
+    if (msg.includes("food")) {
+      return "Food expenses can grow quickly. Try cooking at home more often to reduce spending."
+    }
+
+    if (msg.includes("budget")) {
+      return "A good rule is the 50/30/20 rule: 50% needs, 30% wants, 20% savings."
+    }
+
+    if (total > 20000) {
+      return `Your spending is quite high (₹${total}). Consider reviewing your ${biggestCategory} expenses.`
+    }
+
+    return `Your total spending is ₹${total}. Your biggest category is ${biggestCategory}. Keep tracking expenses regularly!`
+  }
+
+  function askAI() {
 
     if (!question.trim()) return
 
     setLoading(true)
 
-    try {
+    setTimeout(() => {
 
-      const response = await fetch("http://localhost:3001/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: question,
-          expenses: expenses
-        })
-      })
+      const reply = generateFakeAI(question, expenses)
 
-      const data = await response.json()
+      setAnswer(reply)
 
-      setAnswer(data.reply)
+      setLoading(false)
 
-    } catch (error) {
-
-      console.error(error)
-      setAnswer("Error contacting AI server")
-
-    }
-
-    setLoading(false)
+    }, 600)
   }
 
   return (
@@ -62,6 +96,5 @@ export default function ChatBot({ expenses }) {
       )}
 
     </div>
-
   )
 }
