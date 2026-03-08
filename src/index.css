@@ -1,0 +1,224 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #111827, #020617);
+  color: #e5e7eb;
+}
+
+/* ===== APP LAYOUT ===== */
+.app {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px 16px 60px;
+}
+
+/* ===== HEADER CARD ===== */
+.header {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35);
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.header h1 {
+  margin-top: 8px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* ===== FORM CARD ===== */
+.card {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(2, 6, 23, 0.95)
+  );
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* ===== INPUTS ===== */
+input,
+select {
+  width: 100%;
+  background: #020617;
+  border: 1px solid #1f2937;
+  color: #e5e7eb;
+  padding: 12px 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+/* ===== MAIN BUTTON ===== */
+button {
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border: none;
+  color: white;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* ===== LIST ===== */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ===== EXPENSE CARD ===== */
+li {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.75),
+    rgba(15, 23, 42, 0.9)
+  );
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  transition: transform 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== LEFT INFO ===== */
+.expense-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.expense-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.expense-date {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.expense-amount {
+  font-weight: 700;
+  color: #22c55e;
+  margin-top: 4px;
+}
+
+/* ===== CATEGORY CHIP ===== */
+.chip {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #020617;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* IMPORTANT FIX */
+.actions button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Edit */
+.edit-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+/* Delete */
+.delete-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* LIGHT MODE */
+
+body.light{
+  background:#f1f5f9;
+  color:#111827;
+}
+
+body.light .header{
+  background:linear-gradient(135deg,#60a5fa,#3b82f6);
+}
+
+body.light .card{
+  background:white;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+body.light input,
+body.light select{
+  background:#f9fafb;
+  color:#111827;
+  border:1px solid #d1d5db;
+}
+
+body.light .expense{
+  background:#ffffff;
+}
+
+body.light .expense-amount{
+  color:#16a34a;
+}
